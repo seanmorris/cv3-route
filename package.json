@@ -1,0 +1,21 @@
+{
+  "name": "cv3-route",
+  "version": "0.0.1",
+  "description": "Dependency injection code.",
+  "scripts": {
+    "build": "babel source --presets babel-preset-latest --out-dir ./",
+    "build-test": "babel source test --presets babel-preset-latest --out-dir ./"
+  },
+  "author": "Sean Morris",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "cv3-inject": "^0.0.3"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-minify": "^0.5.1",
+    "babel-preset-latest": "^6.24.1",
+    "babel-preset-minify": "^0.5.1",
+    "uglify-js-brunch": "^2"
+  }
+}
