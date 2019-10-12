@@ -1,13 +1,11 @@
+import { Test   } from 'cv3-test/Test';
 import { Inject } from 'cv3-inject/Inject';
 
 import { Router } from './Router';
 import { Path   } from './Path';
 
-export class PlainTest extends Inject(class{}, {
-
-	Name:    'PlainTest'
-
-	, paths: {
+export class PlainTest extends Inject(Test, {
+	paths: {
 		'':               'index!'
 		, 'index':        'index!'
 		, 'test/404':     'not found!'
@@ -36,7 +34,7 @@ export class PlainTest extends Inject(class{}, {
 	}})
 
 }){
-	run()
+	testRoutes()
 	{
 		const router = new this.Router;
 
@@ -48,9 +46,10 @@ export class PlainTest extends Inject(class{}, {
 			const path        = new Path(source);
 			const result      = router.route(path);
 
-			console.assert(
+			this.assert(
 				 result === expected
 				, `Router returned unexpected result for...
+Test:     ${this.constructor.name}
 source:   "${source}"
 returned: "${result}"
 expected: "${expected}"

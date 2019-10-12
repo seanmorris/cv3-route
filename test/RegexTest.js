@@ -1,13 +1,12 @@
+import { Test   } from 'cv3-test/Test';
 import { Inject } from 'cv3-inject/Inject';
 
 import { Router } from './Router';
 import { Path   } from './Path';
 
-export class RegexTest extends Inject(class{}, {
-
-	Name:    'RegexTest'
-
-	, paths: {
+export class RegexTest extends Inject(Test, {
+	
+	paths: {
 		'':           'index!'
 		, 'index':    'index!'
 		, 'test/404': 'not found!'
@@ -92,9 +91,8 @@ export class RegexTest extends Inject(class{}, {
 		, false: () => 'not found!'
 
 	}})
-
 }){
-	run()
+	testRoutes()
 	{
 		const router = new this.Router;
 
@@ -106,9 +104,10 @@ export class RegexTest extends Inject(class{}, {
 			const path        = new Path(source);
 			const result      = router.route(path);
 
-			console.assert(
+			this.assert(
 				 result === expected
 				, `Router returned unexpected result for...
+Test:     ${this.Name}
 source:   "${source}"
 returned: "${result}"
 expected: "${expected}"

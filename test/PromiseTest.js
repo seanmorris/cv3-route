@@ -1,13 +1,12 @@
+import { Test   } from 'cv3-test/Test';
 import { Inject } from 'cv3-inject/Inject';
 
 import { Router } from './Router';
 import { Path   } from './Path';
 
-export class PromiseTest extends Inject(class{}, {
+export class PromiseTest extends Inject(Test, {
 
-	Name:    'PromiseTest'
-
-	, paths: {
+	paths: {
 		'':        'Accepted.'
 		, 'index': 'Accepted.'
 		, 'delay': 'Delayed acceptance.'
@@ -24,10 +23,10 @@ export class PromiseTest extends Inject(class{}, {
 	}})
 
 }){
-	run()
+	testRoutes()
 	{
-		const router = new this.Router;
-
+		const router   = new this.Router;
+		const promises = [];
 
 		for(const source in this.paths)
 		{
@@ -35,19 +34,22 @@ export class PromiseTest extends Inject(class{}, {
 
 			const path        = new Path(source);
 			
-			router.route(path).then((result)=>{
+			promises.push(router.route(path).then((result)=>{
 
-				console.assert(
+				this.assert(
 					 result === expected
 					, `Router returned unexpected result for...
+Test:     ${this.constructor.name}
 source:   "${source}"
 returned: "${result}"
 expected: "${expected}"
 `
 				);
 
-			});
+			}));
 
 		}
+
+		return Promise.all(promises.filter(x=>x));
 	}
 }

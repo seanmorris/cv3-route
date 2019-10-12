@@ -1,10 +1,10 @@
+import { Test   } from 'cv3-test/Test';
 import { Inject } from 'cv3-inject/Inject';
 
 import { Path } from './Path';
 
-export class PathTest extends Inject(class{}, {
-	Name:    'PathTest'
-	, paths: {
+export class PathTest extends Inject(Test, {
+	paths: {
 		'':            ['']
 		, 'test':      ['test']
 		, 'test/test': ['test', 'test']
@@ -14,7 +14,7 @@ export class PathTest extends Inject(class{}, {
 		, 'a/b/c/d':   ['a', 'b', 'c', 'd']
 	}
 }){
-	run()
+	testPaths()
 	{
 		for(const source in this.paths)
 		{
@@ -29,9 +29,10 @@ export class PathTest extends Inject(class{}, {
 				const expectation = expected[position];
 				const result      = path.consume();
 
-				console.assert(
+				this.assert(
 					 result === expectation
 					, `Path returned unexpected result for...
+Test:     ${this.constructor.name}
 source:   ${source}
 position: ${position}
 returned: ${result}
