@@ -1,51 +1,58 @@
-# .PHONY: test clean
+.PHONY: build update test clean
 
-# index.js: source/Router.js source/Path.js
-# 	@ npm install \
-# 	&& npm run build
+build:
+	@ npm run build
 
-# test:
-# 	@ npm link cv3-inject \
-# 	&& npm install \
-# 	&& npm run build-test \
-# 	&& node test.js
+build-test:
+	@ npm run build-test
 
-# clean:
-# 	@ rm -rf node_modules *.js
-.PHONY: build test install-dependencies update-dependencies clean audit audit-fix
+install:
+	@ npm install
 
-NODE=docker run --rm \
-	-v `pwd`:/app \
-	-w="/app" \
-	node:12.6.0-alpine
-
-build: source/Path.js source/Router.js
-	@ ${NODE} \
-		npm install -s \
-		&& npx babel source --out-dir ./
+update:
+	@ npm update
 
 test:
-	@ ${NODE} \
-		npm install -s \
-		&& npx babel source test --out-dir ./ \
-		&& node test.js
-
-install-dependencies:
-	@ ${NODE} \
-		npm install
-
-update-dependencies:
-	@ ${NODE} \
-		npm update
+	@ node test.js
 
 clean:
-	@ ${NODE} \
-		rm -rf node_modules *.js
+	@ rm -rf node_modules *.js
 
-audit:
-	@ ${NODE} \
-		npm audit
+# .PHONY: build test install-dependencies update-dependencies clean audit audit-fix
 
-audit-fix:
-	@ ${NODE} \
-		npm audit fix
+# NODE=docker run --rm \
+# 	-v `pwd`:/app \
+# 	-w="/app" \
+# 	node:12.6.0-alpine
+
+# build: source/Path.js source/Router.js
+# 	@ ${NODE} \
+# 		npm install \
+# 		&& npx babel source --out-dir ./
+
+# test:
+# 	@ ${NODE} \
+# 		apk add --no-cache git bash openssh \
+# 		&& npm install \
+# 		&& npx babel source test --out-dir ./ \
+# 		&& node test.js
+
+# install-dependencies:
+# 	@ ${NODE} \
+# 		npm install
+
+# update-dependencies:
+# 	@ ${NODE} \
+# 		npm update
+
+# clean:
+# 	@ ${NODE} \
+# 		rm -rf node_modules *.js
+
+# audit:
+# 	@ ${NODE} \
+# 		npm audit
+
+# audit-fix:
+# 	@ ${NODE} \
+# 		npm audit fix
