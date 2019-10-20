@@ -6,8 +6,6 @@ import { Inject } from 'cv3-inject/Inject';
 import { Path   } from './Path';
 import { Router } from './Router';
 
-console.log(Inject);
-
 const paths = {
 	'':        'Hello, world!'
 	, 'index': 'Hello, world!'
