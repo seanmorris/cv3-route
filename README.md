@@ -83,7 +83,7 @@ const routes = {
     }
 };
 
-class ExampleRouter extends Inject(Router, {routes})
+export class ExampleRouter extends Inject(Router, {routes})
 {
     internalMethod()
     {
@@ -125,7 +125,7 @@ const routes = {
     }
 };
 
-class ExampleRouter extends Inject(Router, {routes})
+export class ExampleRouter extends Inject(Router, {routes})
 {
     // Non-routable methods here
 };
@@ -164,7 +164,7 @@ const routes = {
     nested: Inject(Router, {routes: nestedRoutes})
 };
 
-class ExampleRouter extends Inject(Router, {routes})
+export class ExampleRouter extends Inject(Router, {routes})
 {
     // Non-routable methods here
 };
@@ -198,7 +198,7 @@ const routes = {
     })
 };
 
-class ExampleRouter extends Inject(Router, {routes})
+export class ExampleRouter extends Inject(Router, {routes})
 {
     // Non-routable methods here
 };
