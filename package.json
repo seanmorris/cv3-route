@@ -1,6 +1,6 @@
 {
   "name": "cv3-route",
-  "version": "0.0.1-b",
+  "version": "0.0.2",
   "description": "Dependency injection code.",
   "files": [
     "/*.js"
