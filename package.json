@@ -1,7 +1,10 @@
 {
   "name": "cv3-route",
-  "version": "0.0.1",
+  "version": "0.0.1-b",
   "description": "Dependency injection code.",
+  "files": [
+    "/*.js"
+  ],
   "scripts": {
     "build": "babel source --presets babel-preset-latest --out-dir ./",
     "build-test": "babel source test --presets babel-preset-latest --out-dir ./"

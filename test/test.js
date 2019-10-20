@@ -6,4 +6,6 @@ import { RegexTest    } from './RegexTest';
 import { PromiseTest  } from './PromiseTest';
 import { ExtendedTest } from './ExtendedTest';
 
-Test.run(PathTest, PlainTest, RegexTest, ExtendedTest, PromiseTest);
+import { ExampleRouterTest } from './ExampleRouterTest';
+
+Test.run(PathTest, PlainTest, RegexTest, ExtendedTest, PromiseTest, ExampleRouterTest);

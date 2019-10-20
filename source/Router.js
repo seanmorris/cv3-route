@@ -50,12 +50,17 @@ export class Router extends Inject(class{}, {routes: {} })
 			if(groups = node.match(routeName.substr(1, routeName.length - 2)))
 			{
 				return (router, path) => {
-					if(route.prototype instanceof Router)
+					if(typeof route == 'function')
 					{
-						return (new route).route(path);
+						if(route.prototype instanceof Router)
+						{
+							return (new route).route(path);
+						}
+
+						return route(router, path, groups);
 					}
 
-					return route(router, path, groups);
+					return route;
 				};
 			}
 		}
