@@ -7,7 +7,7 @@ Simple routing for ES6.
 ![cv3-route](https://img.shields.io/badge/cv3-route-darkred?style=for-the-badge) ![Version Badge](https://img.shields.io/npm/v/cv3-route?label=ver&style=for-the-badge) ![Travis (.org)](https://img.shields.io/travis/seanmorris/cv3-route?style=for-the-badge) ![Downloads Badge](https://img.shields.io/npm/dm/cv3-route?color=338800&style=for-the-badge) ![Size badge](https://img.shields.io/github/languages/code-size/seanmorris/cv3-route?style=for-the-badge) ![Apache-2.0 Licence Badge](https://img.shields.io/npm/l/cv3-route?color=338800&style=for-the-badge)
 -->
 
-![cv3-route](https://img.shields.io/badge/cv3-route-darkred?style=for-the-badge) ![Travis (.org)](https://img.shields.io/travis/seanmorris/cv3-route?style=for-the-badge) ![Size badge](https://img.shields.io/github/languages/code-size/seanmorris/cv3-route?style=for-the-badge)
+![cv3-route](https://img.shields.io/badge/cv3-route-darkred?style=for-the-badge) ![Travis (.org)](https://img.shields.io/travis/seanmorris/cv3-route?style=for-the-badge) ![Downloads Badge](https://img.shields.io/npm/dm/cv3-route?color=338800&style=for-the-badge) ![Size badge](https://img.shields.io/github/languages/code-size/seanmorris/cv3-route?style=for-the-badge)
 
 ## Install
 
@@ -30,14 +30,14 @@ import { Inject } from 'cv3-inject/Inject';
 import { Router } from 'cv3-route/Router';
 
 const routes = {
-    index:     'Hello, world!'
-    , other:   'Other route!'
-    , [false]: 'Not found!'
+	index:     'Hello, world!'
+	, other:   'Other route!'
+	, [false]: 'Not found!'
 };
 
 export class ExampleRouter extends Inject(Router, {routes})
 {
-    // Non-routable methods here
+	// Non-routable methods here
 };
 ```
 
@@ -74,21 +74,21 @@ import { Inject } from 'cv3-inject/Inject';
 import { Router } from 'cv3-route/Router';
 
 const routes = {
-    'do-something': (router, path) => {
-        return 'did something.';
-    }
+	'do-something': (router, path) => {
+		return 'did something.';
+	}
 
-    , 'do-something-else': (router, path) => {
-        return router.internalMethod();
-    }
+	, 'do-something-else': (router, path) => {
+		return router.internalMethod();
+	}
 };
 
 export class ExampleRouter extends Inject(Router, {routes})
 {
-    internalMethod()
-    {
-        return 'did something.';
-    }
+	internalMethod()
+	{
+		return 'did something.';
+	}
 };
 ```
 
@@ -119,15 +119,15 @@ import { Inject } from 'cv3-inject/Inject';
 import { Router } from 'cv3-route/Router';
 
 const routes = {
-    [/^regex-([-\w]+)$/]: (router, path, matchGroups) => {
+	[/^regex-([-\w]+)$/]: (router, path, matchGroups) => {
 
-        return matchGroups[1].split('-').join(',');
-    }
+		return matchGroups[1].split('-').join(',');
+	}
 };
 
 export class ExampleRouter extends Inject(Router, {routes})
 {
-    // Non-routable methods here
+	// Non-routable methods here
 };
 ```
 
@@ -156,17 +156,17 @@ import { Inject } from 'cv3-inject/Inject';
 import { Router } from 'cv3-route/Router';
 
 const nestedRoutes = {
-    index: 'Nested index.'
-    , sub: 'Nested route.'
+	index: 'Nested index.'
+	, sub: 'Nested route.'
 }
 
 const routes = {
-    nested: Inject(Router, {routes: nestedRoutes})
+	nested: Inject(Router, {routes: nestedRoutes})
 };
 
 export class ExampleRouter extends Inject(Router, {routes})
 {
-    // Non-routable methods here
+	// Non-routable methods here
 };
 ```
 
@@ -193,14 +193,14 @@ import { Inject } from 'cv3-inject/Inject';
 import { Router } from 'cv3-route/Router';
 
 const routes = {
-    promise: new Promise((accept, reject) => {
-        accept('fulfilled.');
-    })
+	promise: new Promise((accept, reject) => {
+		accept('fulfilled.');
+	})
 };
 
 export class ExampleRouter extends Inject(Router, {routes})
 {
-    // Non-routable methods here
+	// Non-routable methods here
 };
 ```
 
@@ -212,9 +212,9 @@ const exampleRouter = new ExampleRouter;
 const promisePath   = new Path('promise');
 
 exampleRouter.route(promisePath).then((result) => {
-    console.log(result);
+	console.log(result);
 }).catch((error) => {
-    console.error(error);
+	console.error(error);
 });
 
 ```
