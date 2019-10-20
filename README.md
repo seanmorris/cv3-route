@@ -35,7 +35,7 @@ const routes = {
 
 export class ExampleRouter extends Inject(Router, {routes})
 {
-	// Non-routable methods here
+    // Non-routable methods here
 };
 ```
 
@@ -69,21 +69,21 @@ Internal methods may be called on the router.
 
 ```javascript
 const routes = {
-	'do-something': (router, path) => {
-		return 'did something.';
-	}
+    'do-something': (router, path) => {
+        return 'did something.';
+    }
 
-	, 'do-something-else': (router, path) => {
-		return router.internalMethod();
-	}
+    , 'do-something-else': (router, path) => {
+        return router.internalMethod();
+    }
 };
 
 class ExampleRouter extends Inject(Router, {routes})
 {
-	internalMethod()
-	{
-		return 'did something.';
-	}
+    internalMethod()
+    {
+        return 'did something.';
+    }
 };
 ```
 
@@ -111,15 +111,15 @@ If a method is supplied, it will be called with the match groups from the regex 
 
 ```javascript
 const routes = {
-	[/^regex-([-\w]+)$/]: (router, path, matchGroups) => {
+    [/^regex-([-\w]+)$/]: (router, path, matchGroups) => {
 
-		return matchGroups[1].split('-').join(',');
-	}
+        return matchGroups[1].split('-').join(',');
+    }
 };
 
 class ExampleRouter extends Inject(Router, {routes})
 {
-	// Non-routable methods here
+    // Non-routable methods here
 };
 ```
 
@@ -145,19 +145,19 @@ Path objects split their source string on `/`. This allows us to do nested routi
 
 ```javascript
 const nestedRoutes = {
-	index: 'Nested index.'
-	, sub: 'Nested route.'
+    index: 'Nested index.'
+    , sub: 'Nested route.'
 }
 
 const routes = {
 
-	nested: Inject(Router, {routes: nestedRoutes})
+    nested: Inject(Router, {routes: nestedRoutes})
 
 };
 
 class ExampleRouter extends Inject(Router, {routes})
 {
-	// Non-routable methods here
+    // Non-routable methods here
 };
 ```
 
