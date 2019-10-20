@@ -24,6 +24,8 @@ const paths = {
 
 	, 'nested':     'Nested index.'
 	, 'nested/sub': 'Nested route.'
+
+	, 'promise': 'fulfilled.'
 };
 
 const nestedRoutes = {
@@ -52,6 +54,12 @@ const routes = {
 	}
 
 	, nested: Inject(Router, {routes: nestedRoutes})
+
+	, promise: new Promise((accept, reject) => {
+
+		accept('fulfilled.');
+
+	})
 
 	, [false]: 'Not found!'
 };

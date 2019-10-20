@@ -21,7 +21,9 @@ $ npm install cv3-route
 
 Inject your routes into the `Router` class to produce a routable subclass.
 
-Scalar values will be returned directly, methods & promises will be evaluated & returned.
+Scalar values will be returned directly, methods will be evaluated & returned.
+
+`[false]` will be called if no other routes match.
 
 ```javascript
 import { Inject } from 'cv3-inject/Inject';
@@ -68,6 +70,9 @@ You can route to methods instead of directly returning strings. The router objec
 Internal methods may be called on the router.
 
 ```javascript
+import { Inject } from 'cv3-inject/Inject';
+import { Router } from 'cv3-route/Router';
+
 const routes = {
     'do-something': (router, path) => {
         return 'did something.';
@@ -110,6 +115,9 @@ The [square bracket] syntax allows us to maintain regex syntax highlighting in t
 If a method is supplied, it will be called with the match groups from the regex operation as the 3rd parameter.
 
 ```javascript
+import { Inject } from 'cv3-inject/Inject';
+import { Router } from 'cv3-route/Router';
+
 const routes = {
     [/^regex-([-\w]+)$/]: (router, path, matchGroups) => {
 
@@ -144,15 +152,16 @@ console.log(exampleRouter.route(threePath));
 Path objects split their source string on `/`. This allows us to do nested routing.
 
 ```javascript
+import { Inject } from 'cv3-inject/Inject';
+import { Router } from 'cv3-route/Router';
+
 const nestedRoutes = {
     index: 'Nested index.'
     , sub: 'Nested route.'
 }
 
 const routes = {
-
     nested: Inject(Router, {routes: nestedRoutes})
-
 };
 
 class ExampleRouter extends Inject(Router, {routes})
@@ -172,6 +181,41 @@ const nestedRoutePath = new Path('nested/sub');
 
 console.log(exampleRouter.route(nestedIndexPath));
 console.log(exampleRouter.route(nestedRoutePath));
+
+```
+
+### Routing with promises
+
+Promises will be passed through, so promise-based routing is simple:
+
+```javascript
+import { Inject } from 'cv3-inject/Inject';
+import { Router } from 'cv3-route/Router';
+
+const routes = {
+    promise: new Promise((accept, reject) => {
+        accept('fulfilled.');
+    })
+};
+
+class ExampleRouter extends Inject(Router, {routes})
+{
+    // Non-routable methods here
+};
+```
+
+```javascript
+import { ExampleRouter } from './ExampleRouter';
+import { Path } from 'cv3-route/Path';
+
+const exampleRouter = new ExampleRouter;
+const promisePath   = new Path('promise');
+
+exampleRouter.route(promisePath).then((result) => {
+    console.log(result);
+}).catch((error) => {
+    console.error(error);
+});
 
 ```
 
