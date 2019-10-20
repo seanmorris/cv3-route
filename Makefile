@@ -18,6 +18,9 @@ test:
 clean:
 	@ rm -rf node_modules *.js
 
+hooks:
+	git config core.hooksPath .githooks
+
 # .PHONY: build test install-dependencies update-dependencies clean audit audit-fix
 
 # NODE=docker run --rm \
