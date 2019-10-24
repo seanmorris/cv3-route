@@ -1,6 +1,6 @@
 {
   "name": "cv3-route",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "Dependency injection code.",
   "files": [
     "/*.js"
@@ -12,7 +12,7 @@
   "author": "Sean Morris",
   "license": "Apache-2.0",
   "dependencies": {
-    "cv3-inject": "^0.0.3"
+    "cv3-inject": "^0.0.7"
   },
   "devDependencies": {
     "cv3-test": "^0.0.1",
